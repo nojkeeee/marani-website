@@ -1,0 +1,53 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "uploads"
+public_folder: "/uploads"
+
+locale: de
+
+collections:
+  - name: "restaurant"
+    label: "Restaurant"
+    files:
+
+      - file: "_data/site.json"
+        label: "Restaurant-Infos"
+        name: "infos"
+        fields:
+
+          - label: "Restaurant"
+            name: "restaurant"
+            widget: "object"
+            fields:
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Adresse (Straße)", name: "address", widget: "string" }
+              - { label: "Stadt & PLZ", name: "city", widget: "string" }
+              - { label: "Telefon", name: "phone", widget: "string" }
+              - { label: "E-Mail", name: "email", widget: "string" }
+              - { label: "Kurzbeschreibung (Hero)", name: "tagline", widget: "string" }
+              - { label: "Untertitel (Hero)", name: "subtitle", widget: "string" }
+              - { label: "Über uns Text", name: "description", widget: "text" }
+
+          - label: "Öffnungszeiten"
+            name: "hours"
+            widget: "object"
+            fields:
+              - { label: "Mo–Fr Zeiten", name: "weekdays_time", widget: "string" }
+              - { label: "Sa–So Zeiten", name: "weekend_time", widget: "string" }
+              - { label: "Ruhetag", name: "closed_day", widget: "string" }
+
+          - label: "Speisekarte"
+            name: "menu"
+            widget: "list"
+            label_singular: "Gericht"
+            fields:
+              - { label: "Nummer", name: "number", widget: "string" }
+              - { label: "Name", name: "name", widget: "string" }
+              - { label: "Beschreibung", name: "description", widget: "text" }
+              - { label: "Preis", name: "price", widget: "string" }
+              - label: "Kategorie"
+                name: "category"
+                widget: "select"
+                options: ["Vorspeise", "Hauptgericht", "Vom Grill", "Vegetarisch", "Brot & Teig", "Dessert", "Getränke"]

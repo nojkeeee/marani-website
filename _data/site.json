@@ -1,0 +1,67 @@
+{
+  "restaurant": {
+    "name": "Marani",
+    "tagline": "Georgische Küche · Bad Mergentheim",
+    "subtitle": "Authentische Georgische Küche seit 2018",
+    "description": "Das Marani bringt die authentische Küche des Kaukasus nach Bad Mergentheim. Jedes Gericht wird nach traditionellen Familienrezepten zubereitet – mit frischen Zutaten, echten georgischen Gewürzen und der Wärme unserer Gastfreundschaft.",
+    "address": "Musterstraße 12",
+    "city": "97980 Bad Mergentheim",
+    "phone": "+49 7931 000 000",
+    "email": "info@restaurant-marani.de",
+    "founded": "2018",
+    "years": "7+",
+    "dishes": "25+"
+  },
+  "hours": {
+    "weekdays_label": "Mo – Fr",
+    "weekdays_time": "12:00 – 22:00 Uhr",
+    "weekend_label": "Sa – So",
+    "weekend_time": "12:00 – 23:00 Uhr",
+    "closed_day": "Dienstag",
+    "closed_label": "Ruhetag"
+  },
+  "menu": [
+    {
+      "number": "01",
+      "name": "Khinkali",
+      "description": "Handgemachte Teigtaschen gefüllt mit gewürztem Rind- und Schweinefleisch in aromatischer Brühe. Das Wahrzeichen der georgischen Küche.",
+      "price": "€9,50",
+      "category": "Vorspeise"
+    },
+    {
+      "number": "02",
+      "name": "Khachapuri Adjaruli",
+      "description": "Bootförmiges Hefebrot, randvoll mit geschmolzenem Suluguni-Käse, einem Eigelb und frischer Butter. Knusprig und cremig zugleich.",
+      "price": "€13,90",
+      "category": "Hauptgericht"
+    },
+    {
+      "number": "03",
+      "name": "Mtsvadi",
+      "description": "Georgischer Grillspieß mit 12 Stunden mariniertem Fleisch, zubereitet auf offenem Feuer mit Granatapfel und Koriander.",
+      "price": "€16,50",
+      "category": "Vom Grill"
+    },
+    {
+      "number": "04",
+      "name": "Badrijani Nigvzit",
+      "description": "Zart gebratene Auberginenröllchen mit würziger Walnuss-Knoblauch-Paste, garniert mit Granatapfelkernen und frischem Koriander.",
+      "price": "€8,90",
+      "category": "Vegetarisch"
+    },
+    {
+      "number": "05",
+      "name": "Lobiani",
+      "description": "Goldbraun gebackenes Hefebrot gefüllt mit pikanten Bohnen, Speck und Bockshornklee. Eine wärmende Spezialität aus den Bergen.",
+      "price": "€10,50",
+      "category": "Brot & Teig"
+    },
+    {
+      "number": "06",
+      "name": "Georgischer Wein",
+      "description": "Ausgewählte Weine aus dem Herzen Georgiens: der trockene Rkatsiteli, der kräftige Saperavi und der liebliche Kindzmarauli.",
+      "price": "ab €6,50",
+      "category": "Getränke"
+    }
+  ]
+}

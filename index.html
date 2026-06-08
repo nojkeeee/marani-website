@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ site.restaurant.name }} – {{ site.restaurant.tagline }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --gold: #c9a84c;
+      --gold-light: #e2c47a;
+      --dark: #0d0806;
+      --dark2: #180e08;
+      --cream: #f0e8d8;
+      --muted: #8a7a65;
+      --border: rgba(201,168,76,0.2);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--dark);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ── DEMO BANNER ─────────────────────────────── */
+    .demo-banner {
+      background: rgba(201,168,76,0.1);
+      border-bottom: 1px solid rgba(201,168,76,0.3);
+      padding: 0.6rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .demo-banner-left { font-size: 12px; color: var(--gold); letter-spacing: 1px; }
+    .demo-banner-left span { color: var(--muted); font-size: 11px; margin-left: 1rem; }
+    .demo-banner-right {
+      display: flex; gap: 1.2rem; flex-wrap: wrap;
+      font-size: 11px; color: var(--muted); list-style: none;
+    }
+    .demo-banner-right li::before { content: "✓ "; color: var(--gold); }
+
+    /* ── NAV ─────────────────────────────────────── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.4rem 2.5rem;
+      position: absolute;
+      top: 44px;
+      left: 0; right: 0;
+      z-index: 100;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px;
+      letter-spacing: 5px;
+      color: var(--gold);
+      font-weight: 500;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      font-size: 11px;
+      letter-spacing: 2px;
+      color: rgba(240,232,216,0.7);
+      text-decoration: none;
+      text-transform: uppercase;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .btn-outline {
+      display: inline-block;
+      padding: 11px 28px;
+      border: 0.5px solid rgba(201,168,76,0.6);
+      color: var(--gold);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      transition: all 0.3s;
+      cursor: pointer;
+      background: transparent;
+    }
+    .btn-outline:hover { background: var(--gold); color: var(--dark); border-color: var(--gold); }
+    .btn-solid {
+      display: inline-block;
+      padding: 14px 36px;
+      background: var(--gold);
+      color: var(--dark);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      font-family: 'Jost', sans-serif;
+      font-weight: 500;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-solid:hover { background: var(--gold-light); }
+
+    /* ── HERO ────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=1800&auto=format&fit=crop&q=70');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35);
+      transform: scale(1.05);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom,
+        rgba(13,8,6,0.3) 0%,
+        rgba(13,8,6,0.1) 40%,
+        rgba(13,8,6,0.6) 80%,
+        rgba(13,8,6,1) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 2rem;
+      max-width: 800px;
+    }
+    .hero-tag {
+      font-size: 11px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    .hero-tag::before, .hero-tag::after {
+      content: '';
+      width: 40px;
+      height: 0.5px;
+      background: var(--gold);
+      opacity: 0.6;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 110px;
+      line-height: 0.9;
+      color: var(--cream);
+      font-weight: 300;
+      margin-bottom: 1.5rem;
+      letter-spacing: -2px;
+    }
+    .hero-title em { font-style: italic; color: var(--gold); }
+    .hero-subtitle {
+      font-size: 12px;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      color: rgba(240,232,216,0.5);
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+    .hero-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .hero-info-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-top: 0.5px solid var(--border);
+    }
+    .hero-info-item {
+      padding: 1.5rem 2.5rem;
+      border-right: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(13,8,6,0.7);
+      backdrop-filter: blur(10px);
+    }
+    .hero-info-item:last-child { border-right: none; }
+    .hero-info-icon { font-size: 20px; opacity: 0.6; }
+    .hero-info-label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.25rem;
+    }
+    .hero-info-value { font-size: 13px; color: var(--cream); font-weight: 300; line-height: 1.5; }
+
+    /* ── ABOUT STRIP ─────────────────────────────── */
+    .about-strip {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+    .about-image {
+      height: 480px;
+      overflow: hidden;
+    }
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.85);
+      transition: transform 0.6s;
+    }
+    .about-image:hover img { transform: scale(1.03); }
+    .about-text {
+      background: var(--dark2);
+      padding: 4rem 3.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border-left: 0.5px solid var(--border);
+    }
+    .section-tag {
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .about-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      line-height: 1.1;
+      color: var(--cream);
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+    }
+    .about-title em { font-style: italic; color: var(--gold); }
+    .about-desc {
+      font-size: 15px;
+      line-height: 1.9;
+      color: #b8a88e;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+    }
+    .about-facts {
+      display: flex;
+      gap: 2rem;
+      padding-top: 2rem;
+      border-top: 0.5px solid var(--border);
+    }
+    .about-fact-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: var(--gold);
+      line-height: 1;
+    }
+    .about-fact-label { font-size: 11px; color: var(--muted); font-weight: 300; margin-top: 0.25rem; }
+
+    /* ── MENU ────────────────────────────────────── */
+    .menu-section {
+      padding: 6rem 2.5rem;
+      background: var(--dark);
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 3rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px;
+      color: var(--cream);
+      font-weight: 400;
+      line-height: 1;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 0.5px solid var(--border);
+    }
+    .menu-card {
+      background: var(--dark);
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      transition: background 0.25s;
+      cursor: default;
+    }
+    .menu-card:hover { background: #180e08; }
+    .menu-card-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 13px;
+      color: var(--gold);
+      opacity: 0.5;
+      letter-spacing: 1px;
+    }
+    .menu-card-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px;
+      color: var(--cream);
+      font-weight: 500;
+      line-height: 1.1;
+    }
+    .menu-card-desc { font-size: 12px; color: var(--muted); line-height: 1.6; font-weight: 300; flex: 1; }
+    .menu-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 0.5px solid var(--border);
+      margin-top: auto;
+    }
+    .menu-card-price { font-size: 16px; color: var(--gold); font-family: 'Cormorant Garamond', serif; }
+    .menu-card-tag { font-size: 9px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+    /* ── GALLERY ─────────────────────────────────── */
+    .gallery-section { background: var(--dark2); }
+    .gallery-header { padding: 4rem 2.5rem 2rem; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      grid-template-rows: 280px 280px;
+      gap: 2px;
+    }
+    .gallery-item {
+      overflow: hidden;
+      position: relative;
+      background: #1a0e08;
+    }
+    .gallery-item:first-child { grid-row: 1 / 3; }
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      filter: brightness(0.8) saturate(0.9);
+      transition: transform 0.5s, filter 0.3s;
+    }
+    .gallery-item:hover img { transform: scale(1.05); filter: brightness(0.9) saturate(1); }
+    .gallery-item-label {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 1.5rem;
+      background: linear-gradient(transparent, rgba(13,8,6,0.8));
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .gallery-item:hover .gallery-item-label { opacity: 1; }
+
+    /* ── BOOKING ─────────────────────────────────── */
+    .booking-section {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      min-height: 600px;
+    }
+    .booking-info {
+      background: var(--dark2);
+      padding: 4rem 3rem;
+      border-right: 0.5px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .booking-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 48px;
+      color: var(--cream);
+      font-weight: 400;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+    }
+    .booking-title em { font-style: italic; color: var(--gold); }
+    .booking-desc { font-size: 14px; color: var(--muted); line-height: 1.8; margin-bottom: 2.5rem; font-weight: 300; }
+    .booking-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    .booking-detail-icon { font-size: 18px; margin-top: 2px; }
+    .booking-detail-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.2rem; }
+    .booking-detail-value { font-size: 14px; color: var(--cream); font-weight: 300; }
+
+    .booking-form-wrap {
+      background: var(--dark);
+      padding: 4rem 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+    }
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
+    .form-group.full { grid-column: 1 / -1; }
+    .form-group label {
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: transparent;
+      border: none;
+      border-bottom: 0.5px solid rgba(201,168,76,0.25);
+      padding: 10px 0;
+      color: var(--cream);
+      font-family: 'Jost', sans-serif;
+      font-size: 14px;
+      font-weight: 300;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+    }
+    .form-group select option { background: #1a0a08; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--gold); }
+    .form-group textarea { resize: none; min-height: 80px; }
+    .form-submit { grid-column: 1 / -1; margin-top: 0.5rem; display: flex; align-items: center; gap: 2rem; }
+
+    /* Thank you */
+    #thankyou {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      grid-column: 1 / -1;
+    }
+    #thankyou.visible { display: flex; }
+    #form-block.hidden { display: none; }
+    .ty-check {
+      width: 64px; height: 64px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .ty-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 44px;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .ty-text { font-size: 14px; color: var(--muted); max-width: 400px; line-height: 1.8; font-weight: 300; }
+
+    /* ── CONTACT ─────────────────────────────────── */
+    .contact-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border-top: 0.5px solid var(--border);
+    }
+    .contact-map {
+      height: 300px;
+      overflow: hidden;
+      position: relative;
+    }
+    .contact-map img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5) saturate(0.3); }
+    .contact-map-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    .contact-map-pin { font-size: 32px; }
+    .contact-map-text { font-size: 12px; letter-spacing: 2px; color: var(--cream); text-transform: uppercase; }
+    .contact-info {
+      background: var(--dark2);
+      padding: 3rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 1.5rem;
+      border-left: 0.5px solid var(--border);
+    }
+    .contact-cta-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 36px;
+      color: var(--cream);
+    }
+    .contact-cta-title em { font-style: italic; color: var(--gold); }
+    .contact-phone {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 32px;
+      color: var(--gold);
+      text-decoration: none;
+    }
+    .contact-sub { font-size: 12px; color: var(--muted); font-weight: 300; }
+
+    /* ── FOOTER ──────────────────────────────────── */
+    footer {
+      border-top: 0.5px solid var(--border);
+      padding: 2rem 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 18px;
+      letter-spacing: 4px;
+      color: var(--gold);
+    }
+    .footer-copy { font-size: 11px; color: #3a3020; letter-spacing: 1px; }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a {
+      font-size: 11px;
+      color: #4a3e2a;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+
+    /* ── CONTACT NEW ─────────────────────────────── */
+    .contact-section {
+      display: block;
+      background: var(--dark2);
+      padding: 6rem 2.5rem;
+      text-align: center;
+      border-top: 0.5px solid var(--border);
+    }
+    .contact-ornament {
+      width: 48px; height: 48px; margin: 0 auto 1.5rem;
+      opacity: 0.3;
+    }
+    .contact-heading {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 400; color: var(--cream);
+      margin-bottom: 0.5rem; line-height: 1;
+    }
+    .contact-heading em { font-style: italic; color: var(--gold); }
+    .contact-sub-heading {
+      font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 4rem;
+    }
+    .contact-cols {
+      display: grid;
+      grid-template-columns: 1fr 0.5px 1fr 0.5px 1fr;
+      max-width: 900px;
+      margin: 0 auto 4rem;
+      align-items: start;
+    }
+    .contact-divider-v {
+      background: var(--border);
+      height: 100%;
+      min-height: 120px;
+      margin: 0 auto;
+    }
+    .contact-col { padding: 0 2rem; }
+    .contact-col-icon {
+      font-size: 22px; margin-bottom: 1rem; opacity: 0.7;
+    }
+    .contact-col-label {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 0.75rem;
+    }
+    .contact-col-value {
+      font-size: 15px; color: var(--cream); font-weight: 300;
+      line-height: 1.8;
+    }
+    .contact-col-value a {
+      color: var(--cream); text-decoration: none; transition: color 0.2s;
+    }
+    .contact-col-value a:hover { color: var(--gold); }
+    .contact-col-value .muted { font-size: 12px; color: var(--muted); }
+    .contact-cta { display: flex; gap: 1rem; justify-content: center; align-items: center; }
+    .contact-divider-h {
+      width: 60px; height: 0.5px; background: var(--border); margin: 0 auto 3rem;
+    }
+
+    /* ── FOOTER NEW ──────────────────────────────── */
+    footer { background: #0a0604; border-top: 0.5px solid var(--border); }
+
+    .footer-main {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+      gap: 3rem;
+      padding: 4rem 2.5rem 3rem;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .footer-brand {}
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 24px; letter-spacing: 5px; color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+    .footer-tagline {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); margin-bottom: 1rem; line-height: 1.8;
+    }
+    .footer-copy-small {
+      font-size: 13px; color: #4a3e2a; font-weight: 300;
+      line-height: 1.7; font-style: italic;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .footer-col {}
+    .footer-col-title {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1.25rem;
+    }
+    .footer-nav { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .footer-nav a {
+      font-size: 13px; color: #6a5a45; text-decoration: none;
+      font-weight: 300; transition: color 0.2s; letter-spacing: 0.5px;
+    }
+    .footer-nav a:hover { color: var(--cream); }
+    .footer-hours-row {
+      display: flex; justify-content: space-between;
+      font-size: 13px; color: #6a5a45; font-weight: 300;
+      margin-bottom: 0.5rem; gap: 1rem;
+    }
+    .footer-hours-row strong { color: var(--cream); font-weight: 400; }
+    .footer-hours-row.closed strong, .footer-hours-row.closed span { color: #4a3a2a; }
+    .footer-contact-row {
+      font-size: 13px; color: #6a5a45; font-weight: 300;
+      margin-bottom: 0.75rem; line-height: 1.6;
+    }
+    .footer-contact-row a { color: #8a7060; text-decoration: none; transition: color 0.2s; }
+    .footer-contact-row a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      padding: 1.25rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-copy { font-size: 11px; color: #3a3020; letter-spacing: 1px; }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a {
+      font-size: 11px; color: #3a3020; text-decoration: none;
+      letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--gold); }
+  </style>
+</head>
+<body>
+
+  <!-- DEMO BANNER -->
+  <div class="demo-banner">
+    <div class="demo-banner-left">
+      <strong>Demo-Version</strong> — Ihr zukünftiger Webauftritt
+      <span>Alle Inhalte können nach Ihren Wünschen angepasst werden</span>
+    </div>
+    <ul class="demo-banner-right">
+      <li>Name & Adresse</li>
+      <li>Öffnungszeiten</li>
+      <li>Speisekarte & Preise</li>
+      <li>Fotos</li>
+      <li>Telefon & E-Mail</li>
+    </ul>
+  </div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">MARANI</div>
+    <ul class="nav-links">
+      <li><a href="#menu">Speisekarte</a></li>
+      <li><a href="#galerie">Galerie</a></li>
+      <li><a href="#reservierung">Reservierung</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+    </ul>
+    <a href="#reservierung" class="btn-outline">Reservieren</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tag">{{ site.restaurant.tagline }}</p>
+      <h1 class="hero-title">{{ site.restaurant.name | replace("i", "<em>i</em>") | safe }}</h1>
+      <p class="hero-subtitle">{{ site.restaurant.subtitle }}</p>
+      <div class="hero-btns">
+        <a href="#reservierung" class="btn-solid">Tisch reservieren</a>
+        <a href="#menu" class="btn-outline">Speisekarte ansehen</a>
+      </div>
+    </div>
+    <div class="hero-info-bar">
+      <div class="hero-info-item">
+        <div class="hero-info-icon">🕐</div>
+        <div>
+          <p class="hero-info-label">Öffnungszeiten</p>
+          <p class="hero-info-value">{{ site.hours.weekdays_label }} {{ site.hours.weekdays_time }} · {{ site.hours.weekend_label }} {{ site.hours.weekend_time }}</p>
+        </div>
+      </div>
+      <div class="hero-info-item">
+        <div class="hero-info-icon">📍</div>
+        <div>
+          <p class="hero-info-label">Adresse</p>
+          <p class="hero-info-value">{{ site.restaurant.address }}, {{ site.restaurant.city }}</p>
+        </div>
+      </div>
+      <div class="hero-info-item">
+        <div class="hero-info-icon">📞</div>
+        <div>
+          <p class="hero-info-label">Telefon</p>
+          <p class="hero-info-value">{{ site.restaurant.phone }}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-strip">
+    <div class="about-image">
+      <img
+        src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=900&auto=format&fit=crop&q=80"
+        alt="Restaurant Marani – Atmosphäre"
+        loading="lazy"
+      />
+    </div>
+    <div class="about-text">
+      <p class="section-tag">Unsere Geschichte</p>
+      <h2 class="about-title">Willkommen im<br><em>Herzen Georgiens</em></h2>
+      <p class="about-desc">{{ site.restaurant.description }}</p>
+      <div class="about-facts">
+        <div>
+          <div class="about-fact-num">{{ site.restaurant.years }}</div>
+          <div class="about-fact-label">Jahre Erfahrung</div>
+        </div>
+        <div>
+          <div class="about-fact-num">{{ site.restaurant.dishes }}</div>
+          <div class="about-fact-label">Gerichte auf der Karte</div>
+        </div>
+        <div>
+          <div class="about-fact-num">100%</div>
+          <div class="about-fact-label">Hausgemacht</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu-section" id="menu">
+    <div class="section-header">
+      <div>
+        <p class="section-tag">Was wir anbieten</p>
+        <h2 class="section-title">Unsere<br><em>Spezialitäten</em></h2>
+      </div>
+    </div>
+    <div class="menu-grid">
+      {% for item in site.menu %}
+      <div class="menu-card">
+        <div class="menu-card-num">{{ item.number }}</div>
+        <div class="menu-card-name">{{ item.name }}</div>
+        <div class="menu-card-desc">{{ item.description }}</div>
+        <div class="menu-card-footer">
+          <span class="menu-card-price">{{ item.price }}</span>
+          <span class="menu-card-tag">{{ item.category }}</span>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section class="gallery-section" id="galerie">
+    <div class="gallery-header">
+      <p class="section-tag">Eindrücke</p>
+      <h2 class="section-title"><em>Galerie</em></h2>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&auto=format&fit=crop&q=80" alt="Georgische Spezialitäten" loading="lazy" />
+        <div class="gallery-item-label">Unsere Spezialitäten</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&auto=format&fit=crop&q=80" alt="Frische Zutaten" loading="lazy" />
+        <div class="gallery-item-label">Frische Zutaten</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?w=600&auto=format&fit=crop&q=80" alt="Georgischer Wein" loading="lazy" />
+        <div class="gallery-item-label">Georgischer Wein</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&auto=format&fit=crop&q=80" alt="Hausgemachte Küche" loading="lazy" />
+        <div class="gallery-item-label">Hausgemacht</div>
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&auto=format&fit=crop&q=80" alt="Restaurant Atmosphäre" loading="lazy" />
+        <div class="gallery-item-label">Atmosphäre</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section class="booking-section" id="reservierung">
+    <div class="booking-info">
+      <p class="section-tag">Online reservieren</p>
+      <h2 class="booking-title">Tisch<br><em>reservieren</em></h2>
+      <p class="booking-desc">Wir bestätigen Ihre Anfrage per E-Mail oder Telefon innerhalb von 24 Stunden.</p>
+      <div class="booking-detail">
+        <div class="booking-detail-icon">🕐</div>
+        <div>
+          <p class="booking-detail-label">Öffnungszeiten</p>
+          <p class="booking-detail-value">{{ site.hours.weekdays_label }} &nbsp;{{ site.hours.weekdays_time }}<br>{{ site.hours.weekend_label }} &nbsp;{{ site.hours.weekend_time }}</p>
+        </div>
+      </div>
+      <div class="booking-detail">
+        <div class="booking-detail-icon">📍</div>
+        <div>
+          <p class="booking-detail-label">Adresse</p>
+          <p class="booking-detail-value">{{ site.restaurant.address }}<br>{{ site.restaurant.city }}</p>
+        </div>
+      </div>
+      <div class="booking-detail">
+        <div class="booking-detail-icon">📞</div>
+        <div>
+          <p class="booking-detail-label">Direktreservierung</p>
+          <p class="booking-detail-value">{{ site.restaurant.phone }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking-form-wrap">
+      <div id="form-block">
+        <form
+          class="form-grid"
+          onsubmit="handleSubmit(event)"
+        >
+
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="Ihr vollständiger Name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">E-Mail</label>
+            <input type="email" id="email" name="email" placeholder="ihre@email.de" required />
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone" placeholder="+49 ..." />
+          </div>
+          <div class="form-group">
+            <label for="guests">Personen</label>
+            <select id="guests" name="guests">
+              <option>1 Person</option>
+              <option>2 Personen</option>
+              <option selected>3–4 Personen</option>
+              <option>5–6 Personen</option>
+              <option>7–10 Personen</option>
+              <option>Gruppe (10+)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="date">Datum</label>
+            <input type="date" id="date" name="date" required />
+          </div>
+          <div class="form-group">
+            <label for="time">Uhrzeit</label>
+            <select id="time" name="time">
+              <option>12:00 Uhr</option>
+              <option>13:00 Uhr</option>
+              <option>14:00 Uhr</option>
+              <option>18:00 Uhr</option>
+              <option>19:00 Uhr</option>
+              <option>20:00 Uhr</option>
+              <option>21:00 Uhr</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="notes">Anmerkungen</label>
+            <textarea id="notes" name="notes" placeholder="Besondere Wünsche, Allergien, Anlass..."></textarea>
+          </div>
+          <div class="form-submit">
+            <button type="submit" class="btn-solid">Reservierung absenden</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="thankyou">
+        <div class="ty-check">✓</div>
+        <h2 class="ty-title">Vielen Dank!</h2>
+        <p class="ty-text">Ihre Anfrage wurde erfolgreich gesendet.<br>Wir melden uns innerhalb von 24 Stunden zur Bestätigung.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="contact-section" id="kontakt">
+    <svg class="contact-ornament" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="22" stroke="#c9a84c" stroke-width="1"/>
+      <circle cx="24" cy="24" r="15" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="24" y1="2" x2="24" y2="46" stroke="#c9a84c" stroke-width="0.5"/>
+      <line x1="2" y1="24" x2="46" y2="24" stroke="#c9a84c" stroke-width="0.5"/>
+      <rect x="17" y="17" width="14" height="14" stroke="#c9a84c" stroke-width="0.5" transform="rotate(45 24 24)"/>
+      <circle cx="24" cy="24" r="3" fill="#c9a84c" opacity="0.7"/>
+    </svg>
+    <h2 class="contact-heading">Besuchen Sie <em>uns</em></h2>
+    <p class="contact-sub-heading">Wir freuen uns auf Sie</p>
+    <div class="contact-divider-h"></div>
+    <div class="contact-cols">
+      <div class="contact-col">
+        <div class="contact-col-icon">📍</div>
+        <p class="contact-col-label">Adresse</p>
+        <p class="contact-col-value">{{ site.restaurant.address }}<br>{{ site.restaurant.city }}</p>
+      </div>
+      <div class="contact-divider-v"></div>
+      <div class="contact-col">
+        <div class="contact-col-icon">🕐</div>
+        <p class="contact-col-label">Öffnungszeiten</p>
+        <p class="contact-col-value">
+          {{ site.hours.weekdays_label }} &nbsp; {{ site.hours.weekdays_time }}<br>
+          {{ site.hours.weekend_label }} &nbsp; {{ site.hours.weekend_time }}<br>
+          <span class="muted">{{ site.hours.closed_day }} {{ site.hours.closed_label }}</span>
+        </p>
+      </div>
+      <div class="contact-divider-v"></div>
+      <div class="contact-col">
+        <div class="contact-col-icon">📞</div>
+        <p class="contact-col-label">Kontakt</p>
+        <p class="contact-col-value">
+          <a href="tel:{{ site.restaurant.phone | replace(' ', '') }}">{{ site.restaurant.phone }}</a><br>
+          <a href="mailto:{{ site.restaurant.email }}">{{ site.restaurant.email }}</a>
+        </p>
+      </div>
+    </div>
+    <div class="contact-cta">
+      <a href="#reservierung" class="btn-solid">Tisch reservieren</a>
+      <a href="tel:{{ site.restaurant.phone | replace(' ', '') }}" class="btn-outline">Anrufen</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <div class="footer-logo">MARANI</div>
+        <p class="footer-tagline">{{ site.restaurant.tagline }}</p>
+        <p class="footer-copy-small">Jedes Gericht – eine Reise<br>ins Herzen des Kaukasus.</p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Navigation</p>
+        <ul class="footer-nav">
+          <li><a href="#menu">Speisekarte</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#reservierung">Reservierung</a></li>
+          <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Öffnungszeiten</p>
+        <p class="footer-hours-row"><strong>{{ site.hours.weekdays_label }}</strong><span>{{ site.hours.weekdays_time }}</span></p>
+        <p class="footer-hours-row"><strong>{{ site.hours.weekend_label }}</strong><span>{{ site.hours.weekend_time }}</span></p>
+        <p class="footer-hours-row closed"><strong>{{ site.hours.closed_day }}</strong><span>{{ site.hours.closed_label }}</span></p>
+      </div>
+      <div class="footer-col">
+        <p class="footer-col-title">Kontakt</p>
+        <p class="footer-contact-row">📍 {{ site.restaurant.address }}<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{ site.restaurant.city }}</p>
+        <p class="footer-contact-row">📞 <a href="tel:{{ site.restaurant.phone | replace(' ', '') }}">{{ site.restaurant.phone }}</a></p>
+        <p class="footer-contact-row">✉️ <a href="mailto:{{ site.restaurant.email }}">{{ site.restaurant.email }}</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">© 2025 Restaurant {{ site.restaurant.name }} · {{ site.restaurant.city }}</p>
+      <div class="footer-legal">
+        <a href="#">Impressum</a>
+        <a href="#">Datenschutz</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    async function handleSubmit(e) {
+      e.preventDefault();
+      const form = e.target;
+      try {
+        const res = await fetch('https://formspree.io/f/xkoarery', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(form),
+        });
+        if (!res.ok) throw new Error();
+        document.getElementById('form-block').classList.add('hidden');
+        document.getElementById('thankyou').classList.add('visible');
+      } catch {
+        alert('Fehler beim Senden. Bitte versuchen Sie es erneut oder rufen Sie uns an.');
+      }
+    }
+  </script>
+
+</body>
+</html>
