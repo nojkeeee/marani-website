@@ -1,16 +1,16 @@
 {
   "restaurant": {
-    "name": "Marani",
-    "tagline": "Georgische Küche · Bad Mergentheim",
-    "subtitle": "Authentische Georgische Küche seit 2018",
-    "description": "Das Marani bringt die authentische Küche des Kaukasus nach Bad Mergentheim. Jedes Gericht wird nach traditionellen Familienrezepten zubereitet – mit frischen Zutaten, echten georgischen Gewürzen und der Wärme unserer Gastfreundschaft.",
-    "address": "Musterstraße 12",
-    "city": "97980 Bad Mergentheim",
-    "phone": "+49 7931 000 000",
-    "email": "info@restaurant-marani.de",
     "founded": "2018",
+    "dishes": "25+",
+    "city": "97980 Bad Mergentheim",
+    "name": "Marani",
+    "phone": "+49 7931 000 000",
+    "tagline": "Georgische Küche · Bad Mergentheim",
+    "address": "Musterstraße 12",
     "years": "7+",
-    "dishes": "25+"
+    "subtitle": "Authentische Georgische Küche seit 2018",
+    "email": "info@restaurant-marani.de",
+    "description": "Das Marani bringt die authentische Küche des Kaukasus nach Bad Mergentheim. Jedes Gericht wird nach traditionellen Familienrezepten zubereitet – mit frischen Zutaten, echten georgischen Gewürzen und der Wärme unserer Gastfreundschaft"
   },
   "hours": {
     "weekdays_label": "Mo – Fr",
