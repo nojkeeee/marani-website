@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datenschutzerklärung – {{ site.restaurant.name }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root {
+      --gold: #c9a84c;
+      --dark: #0d0806;
+      --dark2: #180e08;
+      --cream: #f0e8d8;
+      --muted: #8a7a65;
+      --border: rgba(201,168,76,0.2);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--dark); color: var(--cream); }
+
+    nav {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 2.5rem;
+      border-bottom: 0.5px solid var(--border);
+      background: #0a0604;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 20px; letter-spacing: 5px; color: var(--gold); font-weight: 500;
+      text-decoration: none;
+    }
+    .nav-back {
+      font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--muted); text-decoration: none; transition: color 0.2s;
+    }
+    .nav-back:hover { color: var(--gold); }
+
+    main {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 5rem 2.5rem 6rem;
+    }
+    .page-tag {
+      font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 1rem;
+    }
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 52px; font-weight: 400; color: var(--cream); line-height: 1.1;
+      margin-bottom: 0.5rem;
+    }
+    h1 em { font-style: italic; color: var(--gold); }
+    .divider { width: 60px; height: 0.5px; background: var(--border); margin: 2.5rem 0; }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 22px; font-weight: 500; color: var(--cream);
+      margin-bottom: 0.75rem; margin-top: 2.5rem;
+    }
+    p {
+      font-size: 14px; color: #9a8a70; line-height: 1.9; font-weight: 300;
+      margin-bottom: 0.75rem;
+    }
+    ul {
+      margin: 0.5rem 0 0.75rem 1.5rem;
+    }
+    ul li {
+      font-size: 14px; color: #9a8a70; line-height: 1.9; font-weight: 300;
+    }
+    a { color: var(--gold); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    footer {
+      background: #0a0604; border-top: 0.5px solid var(--border);
+      padding: 1.5rem 2.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px; letter-spacing: 4px; color: var(--gold);
+    }
+    .footer-legal { display: flex; gap: 1.5rem; }
+    .footer-legal a {
+      font-size: 11px; color: #3a3020; text-decoration: none;
+      letter-spacing: 1px; text-transform: uppercase; transition: color 0.2s;
+    }
+    .footer-legal a:hover { color: var(--gold); }
+    .footer-legal a.active { color: var(--muted); }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="nav-logo">MARANI</a>
+    <a href="/" class="nav-back">← Zurück zur Website</a>
+  </nav>
+
+  <main>
+    <p class="page-tag">Rechtliches</p>
+    <h1>Daten<em>schutz</em></h1>
+    <div class="divider"></div>
+
+    <h2>1. Datenschutz auf einen Blick</h2>
+    <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können.</p>
+
+    <h2>2. Verantwortliche Stelle</h2>
+    <p>Verantwortlich für die Datenverarbeitung auf dieser Website ist:</p>
+    <p>{{ site.restaurant.name }}<br>{{ site.restaurant.address }}<br>{{ site.restaurant.city }}</p>
+    <p>Telefon: <a href="tel:{{ site.restaurant.phone | replace(' ', '') }}">{{ site.restaurant.phone }}</a><br>
+    E-Mail: <a href="mailto:{{ site.restaurant.email }}">{{ site.restaurant.email }}</a></p>
+
+    <h2>3. Datenerfassung auf dieser Website</h2>
+    <p><strong style="color: var(--cream); font-weight: 400;">Kontakt- und Reservierungsformular</strong></p>
+    <p>Wenn Sie uns per Formular Anfragen zukommen lassen, werden Ihre Angaben aus dem Anfrageformular zur Bearbeitung der Anfrage und für den Fall von Anschlussfragen bei uns gespeichert. Die Daten werden über den Dienst Formspree (formspree.io) verarbeitet. Ihre Daten werden nicht ohne Ihre Einwilligung weitergegeben.</p>
+    <p>Die von Ihnen im Formular eingegebenen Daten (Name, E-Mail, Telefon, Datum, Personenanzahl, Anmerkungen) verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt.</p>
+
+    <p><strong style="color: var(--cream); font-weight: 400;">Server-Log-Dateien</strong></p>
+    <p>Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch übermittelt. Dies sind:</p>
+    <ul>
+      <li>Browsertyp und Browserversion</li>
+      <li>verwendetes Betriebssystem</li>
+      <li>Referrer URL</li>
+      <li>Hostname des zugreifenden Rechners</li>
+      <li>Uhrzeit der Serveranfrage</li>
+      <li>IP-Adresse</li>
+    </ul>
+    <p>Diese Daten werden nicht mit anderen Datenquellen zusammengeführt.</p>
+
+    <h2>4. Externe Dienste</h2>
+    <p><strong style="color: var(--cream); font-weight: 400;">Google Fonts</strong></p>
+    <p>Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen. Anbieter ist die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland. Weitere Informationen zu Google Fonts finden Sie unter <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener">https://developers.google.com/fonts/faq</a>.</p>
+
+    <p><strong style="color: var(--cream); font-weight: 400;">Formspree</strong></p>
+    <p>Für die Verarbeitung von Kontaktanfragen nutzen wir den Dienst Formspree (formspree.io). Beim Absenden des Formulars werden Ihre Daten an Server von Formspree Inc., 2261 Market Street #5039, San Francisco, CA 94114, USA übertragen. Weitere Informationen finden Sie in der Datenschutzerklärung von Formspree unter <a href="https://formspree.io/legal/privacy-policy" target="_blank" rel="noopener">https://formspree.io/legal/privacy-policy</a>.</p>
+
+    <h2>5. Ihre Rechte</h2>
+    <p>Sie haben jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung sowie ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit an uns wenden.</p>
+    <p>Kontakt: <a href="mailto:{{ site.restaurant.email }}">{{ site.restaurant.email }}</a></p>
+
+    <div class="divider"></div>
+    <p style="font-size: 12px; color: #6a5a45;">Stand: {{ site.restaurant.founded | default("2024") }} · {{ site.restaurant.name }}</p>
+  </main>
+
+  <footer>
+    <div class="footer-logo">MARANI</div>
+    <div class="footer-legal">
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/" class="active">Datenschutz</a>
+    </div>
+  </footer>
+
+</body>
+</html>

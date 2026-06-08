@@ -52,6 +52,13 @@ collections:
                 widget: "select"
                 options: ["Vorspeise", "Hauptgericht", "Vom Grill", "Vegetarisch", "Brot & Teig", "Dessert", "Getränke"]
 
+          - label: "Soziale Netzwerke"
+            name: "social"
+            widget: "object"
+            fields:
+              - { label: "Instagram URL", name: "instagram", widget: "string", required: false, hint: "z.B. https://www.instagram.com/ihr-restaurant" }
+              - { label: "Facebook URL", name: "facebook", widget: "string", required: false, hint: "z.B. https://www.facebook.com/ihr-restaurant" }
+
           - label: "Galerie"
             name: "gallery"
             widget: "list"
